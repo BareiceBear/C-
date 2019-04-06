@@ -8,7 +8,7 @@ using std::string;
 
 void LSD_constant_len(vector<string>& strs)
 {
-    int R = 128;
+    int R = 128;                     //ascii字符集
     int frequency[128] = {0};
     int count[128] = {0};
     int len = strs[0].length();
@@ -18,13 +18,13 @@ void LSD_constant_len(vector<string>& strs)
     {
         memset(frequency, 0, sizeof(frequency));
         memset(count, 0, sizeof(count));
-        for(auto c : strs)
+        for(auto c : strs)            //计算第i位字符频率
             frequency[c.at(i)]++;
 
-        for(int j =  1; j < R; ++j)
+        for(int j =  1; j < R; ++j)   //将频率转换为索引
             count[j] = frequency[j -  1] + count[j - 1];
 
-        for(auto str : strs)
+        for(auto str : strs)          //排序
         {
             aux[count[str.at(i)]] = str;
             count[str.at(i)]++;
