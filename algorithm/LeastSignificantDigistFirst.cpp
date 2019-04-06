@@ -36,6 +36,14 @@ void LSD_constant_len(vector<string>& strs)
     return;
 }
 
+int maxLen(const vector<string> &strs)
+{
+    int maxLen = 0;
+    for(const auto &str : strs)
+        maxLen = std::max(maxLen, (int)str.length());
+    return maxLen;
+}
+
 int charAt(const string& str, int idx)
 {
     if(idx > str.length() - 1)
@@ -49,7 +57,7 @@ void LSD_variable_len(vector<string>& strs)
     int R = 128;
     int frequency[128] = {0};
     int count[128] = {0};
-    int len = strs[0].length();
+    int len = maxLen(strs);
     vector<string> aux(strs);
 
     for(int i = len - 1; i >= 0; --i)
